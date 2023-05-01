@@ -1,0 +1,24 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t vvenkov/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true vvenkov/react-test npm test
+
+after_success:
+  - docker build -t vvenkov/multi-client ./client
+  - docker build -t vvenkov/multi-nginx ./nginx
+  - docker build -t vvenkov/multi-server ./server
+  - docker build -t vvenkov/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push vvenkov/multi-client
+  - docker push vvenkov/multi-nginx
+  - docker push vvenkov/multi-server
+  - docker push vvenkov/multi-worker
