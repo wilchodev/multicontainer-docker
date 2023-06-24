@@ -24,13 +24,13 @@ after_success:
   - docker push vilislav/multi-worker
 
 deploy:
-  provider: "elasticbeanstalk"
+  provider: elasticbeanstalk
   region: "eu-north-1"
   env: "Multi-docker-env"
   bucket_name: "elasticbeanstalk-eu-north-1-024765960203"
   bucket_path: "docker-multi"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+      secure: $AWS_SECRET_KEY
   on:
     branch: "master"
-  access_key_id: "$AWS_ACCESS_KEY"
-  secret_access_key: "$AWS_SECRET_KEY"
-    secure: "$AWS_SECRET_KEY"
