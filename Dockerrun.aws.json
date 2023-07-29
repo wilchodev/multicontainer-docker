@@ -41,25 +41,3 @@
     }
   ]
 }
-
-//{
-//  "AWSEBDockerrunVersion": "3",
-//  "Image": {
-//    "Name": "vilislav/multi-client",
-//    "Hostname": "client",
-//  },
-//  "Ports": [
-//    {
-//      "ContainerPort": "1234"
-//    }
-//  ],
-//  "Volumes": [
-//    {
-//      "HostDirectory": "/var/app/mydb",
-//      "ContainerDirectory": "/etc/mysql"
-//    }
-//  ],
-//  "Logging": "/var/log/nginx",
-//  "Entrypoint": "/app/bin/myapp",
-//  "Command": "--argument"
-//}
